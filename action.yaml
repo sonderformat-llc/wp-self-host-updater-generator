@@ -26,6 +26,7 @@ runs:
       run: |
         REPO_NAME=$(basename $GITHUB_REPOSITORY)
         ZIP_NAME="${REPO_NAME}-${GITHUB_REF_NAME}.zip"
+        echo "ZIP_NAME=$ZIP_NAME >> $GITHUB_ENV
         git archive --format=zip --output=$ZIP_NAME HEAD
         echo "Current ref: $GITHUB_REF"
         echo "Current ref name: $GITHUB_REF_NAME"
@@ -50,6 +51,6 @@ runs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./${{ github.repository.split('/')[-1] }}-${{ github.ref_name }}.zip
-        asset_name: ${{ github.repository.split('/')[-1] }}-${{ github.ref_name }}.zip
+        asset_path: ./${{ env.ZIP_NAME }}
+        asset_name: ${{ env.ZIP_NAME }}
         asset_content_type: application/zip
