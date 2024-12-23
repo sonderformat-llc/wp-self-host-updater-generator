@@ -26,7 +26,7 @@ runs:
       run: |
         REPO_NAME=$(basename $GITHUB_REPOSITORY)
         ZIP_NAME="${REPO_NAME}-${GITHUB_REF_NAME}.zip"
-        echo "ZIP_NAME=$ZIP_NAME >> $GITHUB_ENV
+        echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
         git archive --format=zip --output=$ZIP_NAME HEAD
         echo "Current ref: $GITHUB_REF"
         echo "Current ref name: $GITHUB_REF_NAME"
