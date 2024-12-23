@@ -6,6 +6,7 @@ runs:
   steps:
     - name: Generate JSON
       run: |
+        ls -la
         node ./src/create-json.js
       shell: bash
     
