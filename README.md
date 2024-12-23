@@ -1,12 +1,12 @@
 # WP Self-Host Update JSON Generator
 
-This GitHub Action generates a JSON file for self-hosting WordPress plugin or theme updates. It automates creating a JSON from the `readme.txt` file, commits it to the `main` branch in the `wp-dist/` directory, and prepares it for integration with custom PHP code.
+A GitHub Action for WordPress plugin and theme developers to enable self-hosted updates directly from GitHub. It generates a JSON file from the readme.txt, commits it to the repository, and prepares everything to integrate with custom PHP code for managing updates directly in WordPress. Simplify self-hosting with this automated tool.
 
 ## Inputs
 
 | Name               | Description                                 | Required | Default                     |
 |--------------------|---------------------------------------------|----------|-----------------------------|
-| `readme-path`      | Path to the `readme.txt` file               | Yes      | `readme.txt`                |
+| `readme-path`      | Path to the `readme.txt` file               | No       | `readme.txt`                |
 | `json-output-path` | Path where the JSON will be saved           | No       | `wp-dist/plugin-data.json`  |
 | `github-token`     | GitHub Token with write permissions         | Yes      | `${{ github.token }}`       |
 
@@ -17,8 +17,8 @@ name: Generate WP Self-Host JSON
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '*'
 
 jobs:
   generate-json:
@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run WP Self-Host Update JSON Generator
-        uses: seu-usuario/generate-readme-json-action@v1
+        uses: eduardovillao/wp-self-host-json-generator@main
         with:
           readme-path: 'readme.txt'
           json-output-path: 'wp-dist/plugin-data.json'
