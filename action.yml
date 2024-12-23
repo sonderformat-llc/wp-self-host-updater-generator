@@ -1,0 +1,19 @@
+name: 'WP Self-Host JSON Generator'
+description: 'A GitHub Action for WordPress plugin and theme developers to enable self-hosted updates directly from GitHub. It generates a JSON file from the readme.txt, commits it to the repository, and prepares everything to integrate with custom PHP code for managing updates directly in WordPress. Simplify self-hosting with this automated tool.'
+author: 'Eduardo Villão <dev@eduardovillao.me>'
+inputs:
+  readme-path:
+    description: 'Path to the readme.txt file'
+    required: true
+    default: 'readme.txt'
+  json-output-path:
+    description: 'Path where the JSON will be saved'
+    required: false
+    default: 'wp-dist/plugin-data.json'
+  github-token:
+    description: 'GitHub Token with write permissions'
+    required: true
+    default: '${{ github.token }}'
+runs:
+  using: 'node16'
+  main: 'src/create-json.js'
