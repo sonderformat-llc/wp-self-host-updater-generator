@@ -23,7 +23,7 @@ runs:
         git config --global user.name "GitHub Actions"
         git add wp-dist/plugin-data.json
         git commit -m "Update JSON for version $GITHUB_REF_NAME"
-        git push origin ${{ github.ref_name }}
+        git push
       shell: bash
     
     - name: Create Release
