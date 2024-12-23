@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const readmePath = path.join(__dirname, 'readme.txt');
-const distFolder = path.join(__dirname, 'wp-dist');
+const workspace = process.env.GITHUB_WORKSPACE;
+console.log(workspace);
+const readmePath = path.join(workspace, 'readme.txt');
+const distFolder = path.join(workspace, 'wp-dist');
 fs.mkdirSync(distFolder, { recursive: true });
 const jsonOutputPath = path.join(distFolder, 'data.json');
 
