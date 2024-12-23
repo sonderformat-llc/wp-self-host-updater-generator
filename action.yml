@@ -4,7 +4,7 @@ author: 'Eduardo Villão <dev@eduardovillao.me>'
 inputs:
   readme-path:
     description: 'Path to the readme.txt file'
-    required: true
+    required: false
     default: 'readme.txt'
   json-output-path:
     description: 'Path where the JSON will be saved'
