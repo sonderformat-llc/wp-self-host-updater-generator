@@ -12,15 +12,6 @@ runs:
       run: |
         node ${{ github.action_path }}/src/create-json.js
       shell: bash
-
-    - name: Commit JSON to Main
-      run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "GitHub Actions"
-        git add .
-        git commit -m "Update JSON for version $GITHUB_REF_NAME"
-        git push
-      shell: bash
     
     - name: Generate release ZIP
       run: |
@@ -33,6 +24,15 @@ runs:
         echo "Current ref type: $GITHUB_REF_TYPE"
         CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
         echo "Current branch detected: $CURRENT_BRANCH"
+      shell: bash
+
+    - name: Commit JSON to Main
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "GitHub Actions"
+        git add .
+        git commit -m "Update JSON for version $GITHUB_REF_NAME"
+        git push
       shell: bash
     
     - name: Create Release
@@ -51,6 +51,6 @@ runs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: wp-dist/${{ github.repository }}-${{ github.ref_name }}.zip
-        asset_name: ${{ github.repository }}-${{ github.ref_name }}.zip
+        asset_path: wp-dist/${{ github.repository.split('/')[-1] }}-${{ github.ref_name }}.zip
+        asset_name: ${{ github.repository.split('/')[-1] }}-${{ github.ref_name }}.zip
         asset_content_type: application/zip
