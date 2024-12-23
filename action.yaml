@@ -25,6 +25,7 @@ runs:
         git add wp-dist/plugin-data.json
         git commit -m "Update JSON for version $GITHUB_REF_NAME"
         git push origin main
+      shell: bash
     
     - name: Create Release
       id: create_release
