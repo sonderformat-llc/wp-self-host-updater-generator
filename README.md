@@ -52,7 +52,7 @@ jobs:
           ref: main
 
       - name: Run WP Self-Host Update JSON Generator
-        uses: eduardovillao/wp-self-host-json-generator@main
+        uses: eduardovillao/wp-self-host-updater-generator@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
