@@ -15,9 +15,15 @@ runs:
         ZIP_NAME="${REPO_NAME}-${GITHUB_REF_NAME}.zip"
         git archive --format=zip --output=$ZIP_NAME HEAD
         mv $ZIP_NAME wp-dist/
+        echo "Current ref: $GITHUB_REF"
+        echo "Current ref name: $GITHUB_REF_NAME"
+        echo "Current ref type: $GITHUB_REF_TYPE"
+        CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+        echo "Current branch detected: $CURRENT_BRANCH"
       shell: bash
     
     - name: Commit JSON to Main
+      uses: actions/checkout@v3
       run: |
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "GitHub Actions"
