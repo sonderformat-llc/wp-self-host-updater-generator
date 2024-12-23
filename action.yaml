@@ -6,8 +6,9 @@ runs:
   steps:
     - name: Generate JSON
       run: |
+        cp /action/src/create-json.js ./action/
         ls -la
-        node ./src/create-json.js
+        node ./action/create-json.js
       shell: bash
     
     - name: Generate release ZIP
