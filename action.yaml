@@ -6,9 +6,7 @@ runs:
   steps:
     - name: Generate JSON
       run: |
-        cp /action/src/create-json.js ./action/
-        ls -la
-        node ./action/create-json.js
+        node ${{ github.action_path }}/src/create-json.js
       shell: bash
     
     - name: Generate release ZIP
