@@ -6,7 +6,7 @@ runs:
   steps:
     - name: Generate JSON
       run: |
-        node src/create-json.js
+        node ./src/create-json.js
       shell: bash
     
     - name: Generate release ZIP
