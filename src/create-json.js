@@ -35,9 +35,9 @@ const parseChangelog = (content) => {
 };
 
 const buildDownloadUrl = () => {
-  const username = process.env.GITHUB_REPOSITORY_OWNER;
+  const username = process.env.USERNAME;
   const repo = process.env.REPO;
-  const tag = process.env.GITHUB_REF_NAME;
+  const tag = process.env.TAG;
   const fileName = process.env.FILENAME;
   return `https://github.com/${username}/${repo}/releases/download/${tag}/${fileName}`;
 };
