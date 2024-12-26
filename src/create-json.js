@@ -1,8 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const workspace = process.env.GITHUB_WORKSPACE;
-console.log(workspace);
+const workspace = process.env.GITHUB_WORKSPACE || path.resolve(__dirname, '..');
 const readmePath = path.join(workspace, 'readme.txt');
 const distFolder = path.join(workspace, 'wp-dist');
 fs.mkdirSync(distFolder, { recursive: true });
@@ -35,14 +34,28 @@ const parseChangelog = (content) => {
   return changelog;
 };
 
+const buildDownloadUrl = () => {
+  const username = process.env.USERNAME;
+  const repo = process.env.REPO;
+  const tag = process.env.TAG;
+  const fileName = process.env.FILENAME;
+  return `https://github.com/${username}/${repo}/releases/download/${tag}/${fileName}`;
+};
+
+const extractPluginName = (content) => {
+  const regex = /^===\s*(.+?)\s*===/m;
+  const match = content.match(regex);
+  return match ? match[1].trim() : "";
+};
+
 const parseReadme = (content) => {
   return {
-    name: extractKeyValue(content, 'Plugin Name') || 'Order on WhatsApp for WooCommerce',
-    slug: extractKeyValue(content, 'Stable tag') || 'order-on-whatsapp-for-woocommerce',
+    name: extractPluginName(content) || '',
+    slug: extractKeyValue(content, 'Stable tag') || '',
     author: extractKeyValue(content, 'Contributors'),
     author_profile: extractKeyValue(content, 'Donate link'),
     version: extractKeyValue(content, 'Stable tag'),
-    download_url: 'https://github.com/<username>/<repo>/releases/latest/download/plugin.zip',
+    download_url: buildDownloadUrl(),
     requires: extractKeyValue(content, 'Requires at least'),
     tested: extractKeyValue(content, 'Tested up to'),
     requires_php: extractKeyValue(content, 'Requires PHP'),
