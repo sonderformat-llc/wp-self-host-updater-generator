@@ -16,14 +16,6 @@ runs:
         echo "FILENAME=${{ github.event.repository.name }}-${{ github.ref_name }}.zip" >> $GITHUB_ENV
       shell: bash
 
-    - name: Debug Variables
-      run: |
-        echo "USERNAME: ${{ env.USERNAME }}"
-        echo "REPO: ${{ env.REPO }}"
-        echo "TAG: ${{ env.TAG }}"
-        echo "FILENAME: ${{ env.FILENAME }}"
-      shell: bash
-
     - name: Generate JSON
       run: |
         node ${{ github.action_path }}/src/create-json.js
