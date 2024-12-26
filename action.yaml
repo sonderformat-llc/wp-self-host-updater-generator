@@ -9,20 +9,20 @@ runs:
   using: 'composite'
   steps:
     - name: Define vars
-    run: |
-      echo "USERNAME=${{ github.repository_owner }}" >> $GITHUB_ENV
-      echo "REPO=${{ github.event.repository.name }}" >> $GITHUB_ENV
-      echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
-      echo "FILENAME=${{ github.event.repository.name }}-${{ github.ref_name }}.zip" >> $GITHUB_ENV
-    shell: bash
+      run: |
+        echo "USERNAME=${{ github.repository_owner }}" >> $GITHUB_ENV
+        echo "REPO=${{ github.event.repository.name }}" >> $GITHUB_ENV
+        echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+        echo "FILENAME=${{ github.event.repository.name }}-${{ github.ref_name }}.zip" >> $GITHUB_ENV
+      shell: bash
 
     - name: Debug Variables
-    run: |
-      echo "USERNAME: ${{ env.USERNAME }}"
-      echo "REPO: ${{ env.REPO }}"
-      echo "TAG: ${{ env.TAG }}"
-      echo "FILENAME: ${{ env.FILENAME }}"
-    shell: bash
+      run: |
+        echo "USERNAME: ${{ env.USERNAME }}"
+        echo "REPO: ${{ env.REPO }}"
+        echo "TAG: ${{ env.TAG }}"
+        echo "FILENAME: ${{ env.FILENAME }}"
+      shell: bash
 
     - name: Generate JSON
       run: |
