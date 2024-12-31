@@ -1,6 +1,9 @@
 name: 'WP Self-Host Updater Generator'
 description: 'A GitHub Action for WordPress plugin and theme developers to enable self-hosted updates directly from GitHub. It generates a JSON file from the readme.txt, commits it to the repository, and prepares everything to integrate with custom PHP code for managing updates directly in WordPress. Simplify self-hosting with this automated tool.'
 author: 'Eduardo Villão <dev@eduardovillao.me>'
+branding:
+  icon: 'package-dependents'
+  color: 'blue' 
 inputs:
   github-token:
     description: 'GitHub Token with write permissions'

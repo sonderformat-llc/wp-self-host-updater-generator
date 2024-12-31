@@ -1,6 +1,6 @@
 # WP Self-Host Updater Generator
 
-A GitHub Action for WordPress plugin and theme developers to enable self-hosted updates directly from GitHub. This Action simplifies the process of self-hosting your plugins and themes by:
+A GitHub Action for WordPress plugin and theme developers to enable self-hosted updates directly from GitHub. This Action simplifies the process of self-hosting your plugins by:
 
 1. Generating and commititing a JSON file based on the `readme.txt`.
 - The `JSON` file will be used by plugin/theme to check updates.
