@@ -37,7 +37,8 @@ const parseChangelog = (content) => {
 const buildDownloadUrl = () => {
   const username = process.env.USERNAME;
   const repo = process.env.REPO;
-  const tag = process.env.TAG;
+  // read the version.txt file and use output as tag
+  const tag = fs.readFileSync(path.join(workspace, 'version.txt'));
   const fileName = process.env.FILENAME;
   return `https://github.com/${username}/${repo}/releases/download/${tag}/${fileName}`;
 };
