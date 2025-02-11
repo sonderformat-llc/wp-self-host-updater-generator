@@ -8,20 +8,13 @@ inputs:
   github-token:
     description: 'GitHub Token with write permissions'
     required: true
-  release-tag:
-    description: 'Release tag to be used in the JSON file'
-    required: true
 runs:
   using: 'composite'
   steps:
     - name: Define vars
-      env:
-        TAG: ${{ inputs.release-tag }}
       run: |
         echo "USERNAME=${{ github.repository_owner }}" >> $GITHUB_ENV
         echo "REPO=${{ github.event.repository.name }}" >> $GITHUB_ENV
-        echo "TAG=${{ env.tag }}" >> $GITHUB_ENV
-        echo "FILENAME=${{ github.event.repository.name }}-${{ env.tag }}.zip" >> $GITHUB_ENV
       shell: bash
 
     - name: Generate JSON
@@ -34,6 +27,6 @@ runs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git config --global user.name "GitHub Actions"
         git add .
-        git commit -m "Update JSON for version $TAG"
+        git commit -m "Update JSON for release"
         git push
       shell: bash
