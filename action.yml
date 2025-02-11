@@ -20,8 +20,8 @@ runs:
       run: |
         echo "USERNAME=${{ github.repository_owner }}" >> $GITHUB_ENV
         echo "REPO=${{ github.event.repository.name }}" >> $GITHUB_ENV
-        echo "TAG=$TAG" >> $GITHUB_ENV
-        echo "FILENAME=${{ github.event.repository.name }}-$TAG.zip" >> $GITHUB_ENV
+        echo "TAG=${{ env.tag }}" >> $GITHUB_ENV
+        echo "FILENAME=${{ github.event.repository.name }}-${{ env.tag }}.zip" >> $GITHUB_ENV
       shell: bash
 
     - name: Generate JSON
