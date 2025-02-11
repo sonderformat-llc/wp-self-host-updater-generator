@@ -39,7 +39,7 @@ const buildDownloadUrl = () => {
   const repo = process.env.REPO;
   // read the first line of version.txt file and use output as tag
   const tag = fs.readFileSync(path.join(workspace, 'version.txt'), 'utf-8').split('\n')[0];
-  return `https://github.com/${username}/${repo}/releases/download/${tag}/${repo}-${tag}.zip`;
+  return `https://github.com/${username}/${repo}/releases/download/v${tag}/${repo}-v${tag}.zip`;
 };
 
 const extractPluginName = (content) => {
